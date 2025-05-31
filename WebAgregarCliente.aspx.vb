@@ -7,20 +7,32 @@ Public Class WebAgregarCliente
             CargarMunicipios(1)
         End If
     End Sub
+    'Funcion para cargar departamentos de la bd
     Private Sub CargarDepartamentos()
         Dim connStr As String = ConfigurationManager.ConnectionStrings("ConexionSQL").ConnectionString
-
-        Using conn As New SqlConnection(connStr)
-            conn.Open()
-            Dim cmd As New SqlCommand("SELECT IdDepartamento, Nombre FROM Departamento ORDER BY Nombre", conn)
-            Using dr As SqlDataReader = cmd.ExecuteReader()
-                ddlDepartamento.Items.Clear()
-                While dr.Read()
-                    ddlDepartamento.Items.Add(New ListItem(dr("Nombre").ToString(), dr("IdDepartamento").ToString()))
-                End While
+        Try
+            Using conn As New SqlConnection(connStr)
+                conn.Open()
+                Dim cmd As New SqlCommand("SELECT IdDepartamento, Nombre FROM Departamento ORDER BY Nombre", conn)
+                Using dr As SqlDataReader = cmd.ExecuteReader()
+                    ddlDepartamento.Items.Clear()
+                    'Agrega al combobox de departamento
+                    While dr.Read()
+                        ddlDepartamento.Items.Add(New ListItem(dr("Nombre").ToString(), dr("IdDepartamento").ToString()))
+                    End While
+                End Using
             End Using
-        End Using
+        Catch ex As Exception
+            ' Muestra alerta de error
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "error", "
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo cargar la información de los departamentos.'
+            });", True)
+        End Try
     End Sub
+    'Evento cuando cambia de Departamento, manda a llamar los municipios que corresponden a ese departamento
     Protected Sub ddlDepartamento_SelectedIndexChanged(sender As Object, e As EventArgs)
         Dim idDepartamento As Integer
         If Integer.TryParse(ddlDepartamento.SelectedValue, idDepartamento) Then
@@ -29,38 +41,70 @@ Public Class WebAgregarCliente
             ddlMunicipio.Items.Clear()
         End If
     End Sub
+    'Los municipios son cargados de acuerdo al departamento seleccionado
     Private Sub CargarMunicipios(idDepartamento As Integer)
         Dim connStr As String = ConfigurationManager.ConnectionStrings("ConexionSQL").ConnectionString
-        Using conn As New SqlConnection(connStr)
-            conn.Open()
-            Dim cmd As New SqlCommand("SELECT IdMunicipio, Nombre FROM Municipio WHERE IdDepartamento = @Id ORDER BY Nombre", conn)
-            cmd.Parameters.AddWithValue("@Id", idDepartamento)
-            Using dr As SqlDataReader = cmd.ExecuteReader()
-                ddlMunicipio.Items.Clear()
-                While dr.Read()
-                    ddlMunicipio.Items.Add(New ListItem(dr("Nombre").ToString(), dr("IdMunicipio").ToString()))
-                End While
+        Try
+            Using conn As New SqlConnection(connStr)
+                conn.Open()
+                Dim cmd As New SqlCommand("SELECT IdMunicipio, Nombre FROM Municipio WHERE IdDepartamento = @Id ORDER BY Nombre", conn)
+                cmd.Parameters.AddWithValue("@Id", idDepartamento)
+                Using dr As SqlDataReader = cmd.ExecuteReader()
+                    ddlMunicipio.Items.Clear()
+                    'Se agregan al combobox de municipios
+                    While dr.Read()
+                        ddlMunicipio.Items.Add(New ListItem(dr("Nombre").ToString(), dr("IdMunicipio").ToString()))
+                    End While
+                End Using
             End Using
-        End Using
+        Catch ex As Exception
+            ' Muestra alerta de error
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "error", "
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo cargar la información de los municipios.'
+            });", True)
+        End Try
     End Sub
+    'Evento click del boton guardar
     Protected Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
         Dim connStr As String = ConfigurationManager.ConnectionStrings("ConexionSQL").ConnectionString
-        Using conn As New SqlConnection(connStr)
-            conn.Open()
-            Dim query As String = "INSERT INTO Cliente (NombreComercial, RazonSocial, Documento, Telefono, CorreoElectronico, Direccion, IdMunicipio) 
+        Try
+            Using conn As New SqlConnection(connStr)
+                conn.Open()
+                Dim query As String = "INSERT INTO Cliente (NombreComercial, RazonSocial, Documento, Telefono, CorreoElectronico, Direccion, IdMunicipio) 
                                VALUES (@NombreComercial, @RazonSocial, @Documento, @Telefono, @CorreoElectronico, @Direccion, @IdMunicipio)"
-            Using cmd As New SqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@NombreComercial", inputNombreComercial.Value)
-                cmd.Parameters.AddWithValue("@RazonSocial", inputRazonSocial.Value)
-                cmd.Parameters.AddWithValue("@Documento", inputDocumento.Value)
-                cmd.Parameters.AddWithValue("@Telefono", inputTelefono.Value)
-                cmd.Parameters.AddWithValue("@CorreoElectronico", inputCorreo.Value)
-                cmd.Parameters.AddWithValue("@Direccion", inputDireccion.Value)
-                cmd.Parameters.AddWithValue("@IdMunicipio", 1)
-
-                cmd.ExecuteNonQuery()
+                Using cmd As New SqlCommand(query, conn)
+                    Dim IdMunicipio As Integer = Integer.Parse(ddlDepartamento.SelectedValue)
+                    cmd.Parameters.AddWithValue("@NombreComercial", inputNombreComercial.Value)
+                    cmd.Parameters.AddWithValue("@RazonSocial", inputRazonSocial.Value)
+                    cmd.Parameters.AddWithValue("@Documento", inputDocumento.Value)
+                    cmd.Parameters.AddWithValue("@Telefono", inputTelefono.Value)
+                    cmd.Parameters.AddWithValue("@CorreoElectronico", inputCorreo.Value)
+                    cmd.Parameters.AddWithValue("@Direccion", inputDireccion.Value)
+                    cmd.Parameters.AddWithValue("@IdMunicipio", IdMunicipio)
+                    cmd.ExecuteNonQuery()
+                End Using
             End Using
-        End Using
-        Response.Redirect("WebClientes.aspx")
+            'Si todo correcto manda sweet alert por javascript
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "alerta", "
+            Swal.fire({
+                icon: 'success',
+                title: '¡Cliente agregado!',
+                text: 'El cliente fue agregado correctamente.',
+                confirmButtonText: 'Aceptar'
+            }).then(() => {
+                window.location.href = 'WebClientes.aspx';
+            });", True)
+        Catch ex As Exception
+            ' Muestra alerta de error
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "error", "
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo guardar el registro.'
+            });", True)
+        End Try
     End Sub
 End Class

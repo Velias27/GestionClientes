@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="Agregar Cliente" Language="vb" MasterPageFile="~/MasterPage.Master" AutoEventWireup="false" CodeBehind="WebAgregarCliente.aspx.vb" Inherits="GestionClientes.WebAgregarCliente" %>
 
-
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">Agregar Cliente</asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container mt-4">
         <h3 id="lblTitulo" runat="server" class="mb-4">Adición de Cliente</h3>

@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="Editar Cliente" Language="vb" MasterPageFile="~/MasterPage.Master" AutoEventWireup="false" CodeBehind="WebEditarCliente.aspx.vb" Inherits="GestionClientes.WebEditarCliente" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">Editar Cliente</asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container mt-4">
         <h3 id="lblTitulo" runat="server" class="mb-4">Edición de cliente No. </h3>
