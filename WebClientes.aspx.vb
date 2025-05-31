@@ -23,7 +23,8 @@ Public Class WebClientes
                 d.Nombre Departamento
             FROM cliente c
             INNER JOIN Municipio m on m.IdMunicipio = c.IdMunicipio
-            INNER JOIN Departamento d on d.IdDepartamento = m.IdDepartamento"
+            INNER JOIN Departamento d on d.IdDepartamento = m.IdDepartamento
+            WHERE Eliminado = 'N'"
                 Using cmd As New SqlCommand(query, conn)
                     conn.Open()
                     Using dr As SqlDataReader = cmd.ExecuteReader()
@@ -67,12 +68,21 @@ Public Class WebClientes
         Dim idCliente As Integer = Integer.Parse(hfEliminarId.Value)
         Dim connStr As String = ConfigurationManager.ConnectionStrings("ConexionSQL").ConnectionString
         Try
+            'El eliminar no borra de la BD si no que es un estado
             Using conn As New SqlConnection(connStr)
                 conn.Open()
-                Dim cmd As New SqlCommand("DELETE FROM Cliente WHERE IdCliente = @Id", conn)
-                cmd.Parameters.AddWithValue("@Id", idCliente)
+                Dim cmd As New SqlCommand("
+            UPDATE Cliente SET 
+                Eliminado = @valor
+            WHERE IdCliente = @IdCliente", conn)
+                cmd.Parameters.AddWithValue("@valor", "S")
+                cmd.Parameters.AddWithValue("@IdCliente", idCliente)
                 cmd.ExecuteNonQuery()
+                'Guardar bitácora
+                Dim idUsuario As Integer = Session("UserId")
+                UtilidadesBD.guardarBitacora("ELIMINAR", idCliente, idUsuario)
             End Using
+
             'Si todo correcto manda sweet alert por javascript
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "alerta", "
             Swal.fire({

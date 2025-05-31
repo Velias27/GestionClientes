@@ -21,7 +21,7 @@ Public Class WebLogin
                     If dr.Read() Then
                         Session("Username") = dr("Username").ToString()
                         Session("UserId") = Convert.ToInt32(dr("IdUsuario"))
-                        Response.Redirect("WebClientes.aspx")
+                        Response.Redirect("Home.aspx")
                     Else
                         pnlAlerta.Visible = True
                     End If

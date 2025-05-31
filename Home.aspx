@@ -16,7 +16,7 @@
             <div class="card shadow-sm border-0">
                 <div class="card-body">
                     <h5 class="card-title">Último Movimiento</h5>
-                    <p class="card-text display-6" id="lblUltimoMov" runat="server">-</p>
+                    <p class="card-text display-8" id="lblUltimoMov" runat="server">-</p>
                 </div>
             </div>
         </div>
