@@ -14,15 +14,6 @@ Option Explicit On
 Partial Public Class WebLogin
 
     '''<summary>
-    '''pnlAlerta control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlAlerta As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
     '''txtUsername control.
     '''</summary>
     '''<remarks>
@@ -48,4 +39,13 @@ Partial Public Class WebLogin
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnLogin As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''pnlAlerta control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlAlerta As Global.System.Web.UI.WebControls.Panel
 End Class

@@ -23,10 +23,6 @@
                     <div class="card shadow-sm border-0">
                         <div class="card-body p-4">
                             <h4 class="mb-4 text-center">Inicio de Sesión</h4>
-                            <!-- Alerta -->
-                            <asp:Panel ID="pnlAlerta" runat="server" Visible="False" CssClass="alert alert-danger" role="alert">
-                                Usuario o contraseña incorrectos.
-                            </asp:Panel>
                             <div class="mb-3">
                                 <label for="txtUsername" class="form-label">Username</label>
                                 <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" />
@@ -36,8 +32,13 @@
                                 <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" />
                             </div>
                             <div class="d-grid">
-                                <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary btn-lg" Text="LOGIN" />
+                                <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary btn-lg" Text="LOGIN" OnClick="btnLogin_Click" />
                             </div>
+                            <br />
+                            <!-- Alerta -->
+                            <asp:Panel ID="pnlAlerta" runat="server" Visible="False" CssClass="alert alert-danger" role="alert">
+                                Usuario o contraseña incorrectos.
+                            </asp:Panel>
                         </div>
                     </div>
                 </div>

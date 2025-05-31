@@ -129,6 +129,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\img\icono.ico" />
+    <Content Include="Home.aspx" />
     <Content Include="WebLogin.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -138,6 +139,13 @@
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Home.aspx.designer.vb">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home.aspx.vb">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
