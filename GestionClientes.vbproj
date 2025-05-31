@@ -130,6 +130,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\img\icono.ico" />
     <Content Include="Home.aspx" />
+    <Content Include="WebAgregarCliente.aspx" />
     <Content Include="WebClientes.aspx" />
     <Content Include="WebEditarCliente.aspx" />
     <Content Include="WebLogin.aspx" />
@@ -181,6 +182,13 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.vb">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebAgregarCliente.aspx.designer.vb">
+      <DependentUpon>WebAgregarCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebAgregarCliente.aspx.vb">
+      <DependentUpon>WebAgregarCliente.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="WebClientes.aspx.designer.vb">
       <DependentUpon>WebClientes.aspx</DependentUpon>

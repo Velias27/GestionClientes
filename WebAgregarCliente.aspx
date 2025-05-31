@@ -1,10 +1,11 @@
-﻿<%@ Page Title="Editar Cliente" Language="vb" MasterPageFile="~/MasterPage.Master" AutoEventWireup="false" CodeBehind="WebEditarCliente.aspx.vb" Inherits="GestionClientes.WebEditarCliente" %>
+﻿<%@ Page Title="Agregar Cliente" Language="vb" MasterPageFile="~/MasterPage.Master" AutoEventWireup="false" CodeBehind="WebAgregarCliente.aspx.vb" Inherits="GestionClientes.WebAgregarCliente" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">Editar Cliente</asp:Content>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">Agregar Cliente</asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container mt-4">
-        <h3 id="lblTitulo" runat="server" class="mb-4">Edición de cliente No. </h3>
+        <h3 id="lblTitulo" runat="server" class="mb-4">Adición de Cliente</h3>
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="inputNombreComercial" class="form-label">Nombre Comercial</label>
@@ -48,19 +49,9 @@
             </div>
         </div>
         <br />
-        <div class="row mb-3">
-            <div class="col-md-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="inputActivo" runat="server" />
-                    <label class="form-check-label" for="inputActivo">
-                        Cliente activo
-                    </label>
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="col-md-12">
-                <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary" Text="Guardar Cambios" OnClick="btnGuardar_Click" />
+                <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary" Text="Agregar Cliente" OnClick="btnGuardar_Click" />
             </div>
         </div>
     </div>

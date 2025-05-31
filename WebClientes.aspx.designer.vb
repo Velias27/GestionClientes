@@ -21,4 +21,22 @@ Partial Public Class WebClientes
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents litClientes As Global.System.Web.UI.WebControls.Literal
+
+    '''<summary>
+    '''hfEliminarId control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hfEliminarId As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''btnEliminarConfirmado control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnEliminarConfirmado As Global.System.Web.UI.WebControls.Button
 End Class

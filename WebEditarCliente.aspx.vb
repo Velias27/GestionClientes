@@ -1,8 +1,6 @@
 ﻿Imports System.Data.SqlClient
-
 Public Class WebEditarCliente
     Inherits System.Web.UI.Page
-
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
             If Not String.IsNullOrEmpty(Request("id")) Then
@@ -16,10 +14,8 @@ Public Class WebEditarCliente
     End Sub
     Private Sub CargarCliente(idCliente As Integer)
         Dim connStr As String = ConfigurationManager.ConnectionStrings("ConexionSQL").ConnectionString
-
         Using conn As New SqlConnection(connStr)
             conn.Open()
-
             Dim cmd As New SqlCommand("
             SELECT
                 Idcliente,
@@ -39,7 +35,6 @@ Public Class WebEditarCliente
             INNER JOIN Departamento d on d.IdDepartamento = m.IdDepartamento
             WHERE IdCliente = @Id", conn)
             cmd.Parameters.AddWithValue("@Id", idCliente)
-
             Using dr As SqlDataReader = cmd.ExecuteReader()
                 If dr.Read() Then
                     lblTitulo.InnerText = "Edición de cliente No. " & dr("IdCliente").ToString()
@@ -71,8 +66,6 @@ Public Class WebEditarCliente
             End Using
         End Using
     End Sub
-
-
     Protected Sub ddlDepartamento_SelectedIndexChanged(sender As Object, e As EventArgs)
         Dim idDepartamento As Integer
         If Integer.TryParse(ddlDepartamento.SelectedValue, idDepartamento) Then
@@ -83,13 +76,10 @@ Public Class WebEditarCliente
     End Sub
     Private Sub CargarMunicipios(idDepartamento As Integer)
         Dim connStr As String = ConfigurationManager.ConnectionStrings("ConexionSQL").ConnectionString
-
         Using conn As New SqlConnection(connStr)
             conn.Open()
-
             Dim cmd As New SqlCommand("SELECT IdMunicipio, Nombre FROM Municipio WHERE IdDepartamento = @Id ORDER BY Nombre", conn)
             cmd.Parameters.AddWithValue("@Id", idDepartamento)
-
             Using dr As SqlDataReader = cmd.ExecuteReader()
                 ddlMunicipio.Items.Clear()
                 While dr.Read()
@@ -98,15 +88,11 @@ Public Class WebEditarCliente
             End Using
         End Using
     End Sub
-
     Protected Sub btnGuardar_Click(sender As Object, e As EventArgs)
         Dim idCliente As Integer = Integer.Parse(Request("id"))
-
         Dim connStr As String = ConfigurationManager.ConnectionStrings("ConexionSQL").ConnectionString
-
         Using conn As New SqlConnection(connStr)
             conn.Open()
-
             Dim cmd As New SqlCommand("
             UPDATE Cliente SET 
                 NombreComercial = @NombreComercial,
@@ -118,7 +104,6 @@ Public Class WebEditarCliente
                 Activo = @Activo,
                 IdMunicipio = @IdMunicipio
             WHERE IdCliente = @IdCliente", conn)
-
             cmd.Parameters.AddWithValue("@IdCliente", idCliente)
             cmd.Parameters.AddWithValue("@NombreComercial", inputNombreComercial.Value)
             cmd.Parameters.AddWithValue("@RazonSocial", inputRazonSocial.Value)
@@ -128,11 +113,8 @@ Public Class WebEditarCliente
             cmd.Parameters.AddWithValue("@Direccion", inputDireccion.Value)
             cmd.Parameters.AddWithValue("@Activo", If(inputActivo.Checked, "S", "N"))
             cmd.Parameters.AddWithValue("@IdMunicipio", Integer.Parse(ddlMunicipio.SelectedValue))
-
             cmd.ExecuteNonQuery()
         End Using
-
-        ' Redireccionar o mostrar mensaje
         Response.Redirect("WebClientes.aspx")
     End Sub
 End Class

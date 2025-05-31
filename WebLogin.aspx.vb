@@ -23,7 +23,7 @@ Public Class WebLogin
 
                 If count = 1 Then
                     Session("Username") = username
-                    Response.Redirect("Home.aspx")
+                    Response.Redirect("WebClientes.aspx")
                 Else
                     pnlAlerta.Visible = True
                 End If
