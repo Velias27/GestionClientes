@@ -10,7 +10,7 @@ Public Class WebClientes
     Private Sub cargarClientes()
         Dim connStr As String = ConfigurationManager.ConnectionStrings("ConexionSQL").ConnectionString
         Using conn As New SqlConnection(connStr)
-            Dim query As String = "SELECT IdCliente, NombreComercial, Documento, Telefono, Departamento, Municipio, Activo FROM Cliente"
+            Dim query As String = "SELECT Idcliente, NombreComercial, Documento, Telefono, Activo, m.Nombre Municipio, d.Nombre Departamento FROM cliente c INNER JOIN Municipio m on m.IdMunicipio = c.IdMunicipio INNER JOIN Departamento d on d.IdDepartamento = m.IdDepartamento"
             Using cmd As New SqlCommand(query, conn)
                 conn.Open()
                 Using dr As SqlDataReader = cmd.ExecuteReader()
@@ -24,6 +24,7 @@ Public Class WebClientes
                         sb.AppendFormat("<td>{0}</td>", dr("Departamento"))
                         sb.AppendFormat("<td>{0}</td>", dr("Municipio"))
                         sb.AppendFormat("<td>{0}</td>", If(dr("Activo") = "S", "Activo", "Inactivo"))
+                        sb.AppendFormat("<td><a href='WebEditarCliente.aspx?id={0}' class='btn btn-sm btn-primary'><i class=""bi bi-pencil-square""></i></a></td>", dr("IdCliente"))
                         sb.Append("</tr>")
                     End While
                     litClientes.Text = sb.ToString()

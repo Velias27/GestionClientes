@@ -15,6 +15,7 @@
                     <th>Departamento</th>
                     <th>Municipio</th>
                     <th>Estado</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -22,6 +23,5 @@
             </tbody>
         </table>
     </div>
-
 </asp:Content>
 

@@ -131,6 +131,7 @@
     <Content Include="Content\img\icono.ico" />
     <Content Include="Home.aspx" />
     <Content Include="WebClientes.aspx" />
+    <Content Include="WebEditarCliente.aspx" />
     <Content Include="WebLogin.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -186,6 +187,13 @@
     </Compile>
     <Compile Include="WebClientes.aspx.vb">
       <DependentUpon>WebClientes.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="WebEditarCliente.aspx.designer.vb">
+      <DependentUpon>WebEditarCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebEditarCliente.aspx.vb">
+      <DependentUpon>WebEditarCliente.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="WebLogin.aspx.designer.vb">
