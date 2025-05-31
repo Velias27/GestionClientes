@@ -1,0 +1,54 @@
+﻿main
+{
+    min-height: calc(100vh - 60px);
+}
+
+.form-control
+{
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus
+{
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.btn-primary
+{
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.btn-primary:hover
+{
+    background-color: #0b5ed7;
+}
+
+.card
+{
+    border-radius: 1rem;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 576px)
+{
+    .card-body
+    {
+        padding: 2rem 1rem;
+    }
+
+    .img-fluid
+    {
+        max-width: 220px;
+    }
+}
+
+form
+{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
