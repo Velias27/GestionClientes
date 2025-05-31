@@ -29,4 +29,19 @@ Public Class UtilidadesBD
         End Using
         Return lista
     End Function
+    Public Shared Sub guardarBitacora(operacion As String, idCliente As Integer, idUsario As Integer)
+        Dim lista As New List(Of ListItem)
+        Dim connStr As String = ConfigurationManager.ConnectionStrings("ConexionSQL").ConnectionString
+        Using conn As New SqlConnection(connStr)
+            conn.Open()
+            Dim query As String = "INSERT INTO BitacoraAccion (Operacion, IdCliente, IdUsuario) 
+                               VALUES (@Operacion, @IdCliente, @IdUsuario)"
+            Using cmd As New SqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@Operacion", operacion)
+                cmd.Parameters.AddWithValue("@IdCliente", idCliente)
+                cmd.Parameters.AddWithValue("@IdUsuario", idUsario)
+                cmd.ExecuteNonQuery()
+            End Using
+        End Using
+    End Sub
 End Class

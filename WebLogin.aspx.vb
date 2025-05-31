@@ -10,26 +10,26 @@ Public Class WebLogin
         Dim username As String = txtUsername.Text.Trim()
         Dim password As String = txtPassword.Text.Trim()
         Dim hashedPassword As String = GetSHA256(password)
-
         Dim connStr As String = ConfigurationManager.ConnectionStrings("ConexionSQL").ConnectionString
         Using conn As New SqlConnection(connStr)
-            Dim query As String = "SELECT COUNT(*) FROM Usuario WHERE Username = @Username AND Password = @Password"
+            Dim query As String = "SELECT IdUsuario, Username FROM Usuario WHERE Username = @Username AND Password = @Password"
             Using cmd As New SqlCommand(query, conn)
                 cmd.Parameters.AddWithValue("@Username", username)
                 cmd.Parameters.AddWithValue("@Password", hashedPassword)
-
                 conn.Open()
-                Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
-
-                If count = 1 Then
-                    Session("Username") = username
-                    Response.Redirect("WebClientes.aspx")
-                Else
-                    pnlAlerta.Visible = True
-                End If
+                Using dr As SqlDataReader = cmd.ExecuteReader()
+                    If dr.Read() Then
+                        Session("Username") = dr("Username").ToString()
+                        Session("UserId") = Convert.ToInt32(dr("IdUsuario"))
+                        Response.Redirect("WebClientes.aspx")
+                    Else
+                        pnlAlerta.Visible = True
+                    End If
+                End Using
             End Using
         End Using
     End Sub
+    'Funcion para encriptar contraseña con SHA256
     Private Function GetSHA256(input As String) As String
         Using sha256 As SHA256 = SHA256.Create()
             Dim bytes As Byte() = Encoding.UTF8.GetBytes(input)

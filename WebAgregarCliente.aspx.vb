@@ -42,18 +42,24 @@ Public Class WebAgregarCliente
         Try
             Using conn As New SqlConnection(connStr)
                 conn.Open()
-                Dim query As String = "INSERT INTO Cliente (NombreComercial, RazonSocial, Documento, Telefono, CorreoElectronico, Direccion, IdMunicipio) 
-                               VALUES (@NombreComercial, @RazonSocial, @Documento, @Telefono, @CorreoElectronico, @Direccion, @IdMunicipio)"
+                Dim query As String = "
+                INSERT INTO Cliente (NombreComercial, RazonSocial, Documento, Telefono, CorreoElectronico, Direccion, IdMunicipio)
+                VALUES (@NombreComercial, @RazonSocial, @Documento, @Telefono, @CorreoElectronico, @Direccion, @IdMunicipio);
+                SELECT SCOPE_IDENTITY();"
+
                 Using cmd As New SqlCommand(query, conn)
-                    Dim IdMunicipio As Integer = Integer.Parse(ddlDepartamento.SelectedValue)
                     cmd.Parameters.AddWithValue("@NombreComercial", inputNombreComercial.Value)
                     cmd.Parameters.AddWithValue("@RazonSocial", inputRazonSocial.Value)
                     cmd.Parameters.AddWithValue("@Documento", inputDocumento.Value)
                     cmd.Parameters.AddWithValue("@Telefono", inputTelefono.Value)
                     cmd.Parameters.AddWithValue("@CorreoElectronico", inputCorreo.Value)
                     cmd.Parameters.AddWithValue("@Direccion", inputDireccion.Value)
-                    cmd.Parameters.AddWithValue("@IdMunicipio", IdMunicipio)
-                    cmd.ExecuteNonQuery()
+                    cmd.Parameters.AddWithValue("@IdMunicipio", Integer.Parse(ddlMunicipio.SelectedValue))
+                    'Ejecutar y obtener el ID insertado
+                    Dim idClienteNuevo As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+                    'Guardar bitácora
+                    Dim idUsuario As Integer = Session("UserId")
+                    UtilidadesBD.guardarBitacora("AGREGAR", idClienteNuevo, idUsuario)
                 End Using
             End Using
             'Si todo correcto manda sweet alert por javascript
