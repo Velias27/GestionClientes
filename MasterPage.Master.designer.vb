@@ -11,32 +11,41 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Home
+Partial Public Class MasterPage
 
     '''<summary>
-    '''lblCantidadClientes control.
+    '''TitleContent control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblCantidadClientes As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents TitleContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
 
     '''<summary>
-    '''lblUltimoMov control.
+    '''lblUsuario control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblUltimoMov As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents lblUsuario As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblClientesActivos control.
+    '''btnCerrarSesion control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblClientesActivos As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents btnCerrarSesion As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''MainContent control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents MainContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
 End Class

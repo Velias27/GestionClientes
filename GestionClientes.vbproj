@@ -127,10 +127,10 @@
     <Content Include="Content\css\login.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\img\logo.png" />
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\img\icono.ico" />
     <Content Include="Home.aspx" />
+    <Content Include="WebClientes.aspx" />
     <Content Include="WebLogin.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -147,6 +147,13 @@
     <Compile Include="Home.aspx.vb">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage.Master.designer.vb">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage.Master.vb">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -174,6 +181,13 @@
     <Compile Include="ViewSwitcher.ascx.designer.vb">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
+    <Compile Include="WebClientes.aspx.designer.vb">
+      <DependentUpon>WebClientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebClientes.aspx.vb">
+      <DependentUpon>WebClientes.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="WebLogin.aspx.designer.vb">
       <DependentUpon>WebLogin.aspx</DependentUpon>
     </Compile>
@@ -191,6 +205,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MasterPage.Master" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
