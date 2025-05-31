@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="Home" Language="vb" MasterPageFile="~/MasterPage.Master" AutoEventWireup="false" CodeBehind="Home.aspx.vb" Inherits="GestionClientes.Home" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Home
-</asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">Home</asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row text-center mt-4">

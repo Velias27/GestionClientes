@@ -1,15 +1,27 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="WebClientes.aspx.vb" Inherits="GestionClientes.WebClientes" %>
+﻿<%@ Page Title="Clientes" Language="vb" MasterPageFile="~/MasterPage.Master" AutoEventWireup="false" CodeBehind="WebClientes.aspx.vb" Inherits="GestionClientes.WebClientes" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">Clientes</asp:Content>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-        </div>
-    </form>
-</body>
-</html>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="container mt-4">
+        <h3 class="mb-4">Lista de Clientes</h3>
+        <table id="tblClientes" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre Comercial</th>
+                    <th>Documento</th>
+                    <th>Teléfono</th>
+                    <th>Departamento</th>
+                    <th>Municipio</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <asp:Literal ID="litClientes" runat="server"></asp:Literal>
+            </tbody>
+        </table>
+    </div>
+
+</asp:Content>
+
