@@ -1,0 +1,17 @@
+﻿.center-content
+{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.clock-widget
+{
+    font-size: 1rem;
+    color: white;
+    margin-left: 1rem;
+}
