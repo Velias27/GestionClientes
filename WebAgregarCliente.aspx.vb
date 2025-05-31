@@ -9,27 +9,12 @@ Public Class WebAgregarCliente
     End Sub
     'Funcion para cargar departamentos de la bd
     Private Sub CargarDepartamentos()
-        Dim connStr As String = ConfigurationManager.ConnectionStrings("ConexionSQL").ConnectionString
         Try
-            Using conn As New SqlConnection(connStr)
-                conn.Open()
-                Dim cmd As New SqlCommand("SELECT IdDepartamento, Nombre FROM Departamento ORDER BY Nombre", conn)
-                Using dr As SqlDataReader = cmd.ExecuteReader()
-                    ddlDepartamento.Items.Clear()
-                    'Agrega al combobox de departamento
-                    While dr.Read()
-                        ddlDepartamento.Items.Add(New ListItem(dr("Nombre").ToString(), dr("IdDepartamento").ToString()))
-                    End While
-                End Using
-            End Using
+            ddlDepartamento.Items.Clear()
+            ddlDepartamento.Items.AddRange(UtilidadesBD.ObtenerDepartamentos().ToArray())
         Catch ex As Exception
-            ' Muestra alerta de error
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "error", "
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'No se pudo cargar la información de los departamentos.'
-            });", True)
+        Swal.fire({ icon: 'error', title: 'Error', text: 'No se pudo cargar la información de los departamentos.' });", True)
         End Try
     End Sub
     'Evento cuando cambia de Departamento, manda a llamar los municipios que corresponden a ese departamento
@@ -43,28 +28,12 @@ Public Class WebAgregarCliente
     End Sub
     'Los municipios son cargados de acuerdo al departamento seleccionado
     Private Sub CargarMunicipios(idDepartamento As Integer)
-        Dim connStr As String = ConfigurationManager.ConnectionStrings("ConexionSQL").ConnectionString
         Try
-            Using conn As New SqlConnection(connStr)
-                conn.Open()
-                Dim cmd As New SqlCommand("SELECT IdMunicipio, Nombre FROM Municipio WHERE IdDepartamento = @Id ORDER BY Nombre", conn)
-                cmd.Parameters.AddWithValue("@Id", idDepartamento)
-                Using dr As SqlDataReader = cmd.ExecuteReader()
-                    ddlMunicipio.Items.Clear()
-                    'Se agregan al combobox de municipios
-                    While dr.Read()
-                        ddlMunicipio.Items.Add(New ListItem(dr("Nombre").ToString(), dr("IdMunicipio").ToString()))
-                    End While
-                End Using
-            End Using
+            ddlMunicipio.Items.Clear()
+            ddlMunicipio.Items.AddRange(UtilidadesBD.ObtenerMunicipios(idDepartamento).ToArray())
         Catch ex As Exception
-            ' Muestra alerta de error
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "error", "
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'No se pudo cargar la información de los municipios.'
-            });", True)
+        Swal.fire({ icon: 'error', title: 'Error', text: 'No se pudo cargar la información de los municipios.' });", True)
         End Try
     End Sub
     'Evento click del boton guardar
