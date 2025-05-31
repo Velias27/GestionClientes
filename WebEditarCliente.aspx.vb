@@ -120,6 +120,9 @@ Public Class WebEditarCliente
                 cmd.Parameters.AddWithValue("@Activo", If(inputActivo.Checked, "S", "N"))
                 cmd.Parameters.AddWithValue("@IdMunicipio", Integer.Parse(ddlMunicipio.SelectedValue))
                 cmd.ExecuteNonQuery()
+                'Guardar bitácora
+                Dim idUsuario As Integer = Session("UserId")
+                UtilidadesBD.guardarBitacora("EDITAR", idCliente, idUsuario)
             End Using
             'Si todo correcto manda sweet alert por javascript
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "alerta", "
