@@ -124,6 +124,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BD\SCRIPT.sql" />
     <Content Include="Content\css\login.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\img\logo.png" />
