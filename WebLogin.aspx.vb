@@ -11,23 +11,33 @@ Public Class WebLogin
         Dim password As String = txtPassword.Text.Trim()
         Dim hashedPassword As String = GetSHA256(password)
         Dim connStr As String = ConfigurationManager.ConnectionStrings("ConexionSQL").ConnectionString
-        Using conn As New SqlConnection(connStr)
-            Dim query As String = "SELECT IdUsuario, Username FROM Usuario WHERE Username = @Username AND Password = @Password"
-            Using cmd As New SqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@Username", username)
-                cmd.Parameters.AddWithValue("@Password", hashedPassword)
-                conn.Open()
-                Using dr As SqlDataReader = cmd.ExecuteReader()
-                    If dr.Read() Then
-                        Session("Username") = dr("Username").ToString()
-                        Session("UserId") = Convert.ToInt32(dr("IdUsuario"))
-                        Response.Redirect("Home.aspx")
-                    Else
-                        pnlAlerta.Visible = True
-                    End If
+        Try
+            Using conn As New SqlConnection(connStr)
+                Dim query As String = "SELECT IdUsuario, Username FROM Usuario WHERE Username = @Username AND Password = @Password"
+                Using cmd As New SqlCommand(query, conn)
+                    cmd.Parameters.AddWithValue("@Username", username)
+                    cmd.Parameters.AddWithValue("@Password", hashedPassword)
+                    conn.Open()
+                    Using dr As SqlDataReader = cmd.ExecuteReader()
+                        If dr.Read() Then
+                            Session("Username") = dr("Username").ToString()
+                            Session("UserId") = Convert.ToInt32(dr("IdUsuario"))
+                            Response.Redirect("Home.aspx")
+                        Else
+                            pnlAlerta.Visible = True
+                        End If
+                    End Using
                 End Using
             End Using
-        End Using
+        Catch ex As Exception
+            ' Muestra alerta de error
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "error", "
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudieron validar los datos, intenta de nuevo más tarde.'
+            });", True)
+        End Try
     End Sub
     'Funcion para encriptar contraseña con SHA256
     Private Function GetSHA256(input As String) As String

@@ -63,7 +63,7 @@
                     ID="rfvTelefono"
                     runat="server"
                     ControlToValidate="inputTelefono"
-                    ErrorMessage="El numero de telefono es requerido."
+                    ErrorMessage="El numero de teléfono es requerido."
                     CssClass="text-danger"
                     Display="Dynamic" />
             </div>
