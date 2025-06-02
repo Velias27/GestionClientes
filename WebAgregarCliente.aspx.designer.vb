@@ -32,6 +32,15 @@ Partial Public Class WebAgregarCliente
     Protected WithEvents inputNombreComercial As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
+    '''rfvNombreComercial control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rfvNombreComercial As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''inputRazonSocial control.
     '''</summary>
     '''<remarks>
@@ -39,6 +48,15 @@ Partial Public Class WebAgregarCliente
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents inputRazonSocial As Global.System.Web.UI.HtmlControls.HtmlInputText
+
+    '''<summary>
+    '''rfvRazonSocial control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rfvRazonSocial As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''inputDocumento control.
@@ -50,6 +68,24 @@ Partial Public Class WebAgregarCliente
     Protected WithEvents inputDocumento As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
+    '''revDUI control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents revDUI As Global.System.Web.UI.WebControls.RegularExpressionValidator
+
+    '''<summary>
+    '''rfvDocumento control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rfvDocumento As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''inputTelefono control.
     '''</summary>
     '''<remarks>
@@ -59,6 +95,24 @@ Partial Public Class WebAgregarCliente
     Protected WithEvents inputTelefono As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
+    '''revTelefono control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents revTelefono As Global.System.Web.UI.WebControls.RegularExpressionValidator
+
+    '''<summary>
+    '''rfvTelefono control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rfvTelefono As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''inputCorreo control.
     '''</summary>
     '''<remarks>
@@ -66,6 +120,24 @@ Partial Public Class WebAgregarCliente
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents inputCorreo As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
+
+    '''<summary>
+    '''revCorreo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents revCorreo As Global.System.Web.UI.WebControls.RegularExpressionValidator
+
+    '''<summary>
+    '''rfvCorreo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rfvCorreo As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''ddlDepartamento control.
@@ -93,6 +165,15 @@ Partial Public Class WebAgregarCliente
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents inputDireccion As Global.System.Web.UI.HtmlControls.HtmlTextArea
+
+    '''<summary>
+    '''rfvDireccion control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rfvDireccion As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''btnGuardar control.

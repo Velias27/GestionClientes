@@ -38,15 +38,18 @@ Public Class WebAgregarCliente
     End Sub
     'Evento click del boton guardar
     Protected Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
+        'Verifica los validadores en Cliente
+        If Not Page.IsValid Then
+            Exit Sub
+        End If
         Dim connStr As String = ConfigurationManager.ConnectionStrings("ConexionSQL").ConnectionString
         Try
             Using conn As New SqlConnection(connStr)
                 conn.Open()
                 Dim query As String = "
-                INSERT INTO Cliente (NombreComercial, RazonSocial, Documento, Telefono, CorreoElectronico, Direccion, IdMunicipio)
-                VALUES (@NombreComercial, @RazonSocial, @Documento, @Telefono, @CorreoElectronico, @Direccion, @IdMunicipio);
-                SELECT SCOPE_IDENTITY();"
-
+                    INSERT INTO Cliente (NombreComercial, RazonSocial, Documento, Telefono, CorreoElectronico, Direccion, IdMunicipio)
+                    VALUES (@NombreComercial, @RazonSocial, @Documento, @Telefono, @CorreoElectronico, @Direccion, @IdMunicipio);
+                    SELECT SCOPE_IDENTITY();"
                 Using cmd As New SqlCommand(query, conn)
                     cmd.Parameters.AddWithValue("@NombreComercial", inputNombreComercial.Value)
                     cmd.Parameters.AddWithValue("@RazonSocial", inputRazonSocial.Value)
@@ -64,22 +67,22 @@ Public Class WebAgregarCliente
             End Using
             'Si todo correcto manda sweet alert por javascript
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "alerta", "
-            Swal.fire({
-                icon: 'success',
-                title: '¡Cliente agregado!',
-                text: 'El cliente fue agregado correctamente.',
-                confirmButtonText: 'Aceptar'
-            }).then(() => {
-                window.location.href = 'WebClientes.aspx';
-            });", True)
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Cliente agregado!',
+                    text: 'El cliente fue agregado correctamente.',
+                    confirmButtonText: 'Aceptar'
+                }).then(() => {
+                    window.location.href = 'WebClientes.aspx';
+                });", True)
         Catch ex As Exception
             ' Muestra alerta de error
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "error", "
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'No se pudo guardar el registro.'
-            });", True)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'No se pudo guardar el registro.'
+                });", True)
         End Try
     End Sub
 End Class

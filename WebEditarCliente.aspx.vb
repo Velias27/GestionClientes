@@ -94,6 +94,10 @@ Public Class WebEditarCliente
     End Sub
     'Evento click del boton Guardar
     Protected Sub btnGuardar_Click(sender As Object, e As EventArgs)
+        'Verifica los validadores en Cliente
+        If Not Page.IsValid Then
+            Exit Sub
+        End If
         Dim idCliente As Integer = Integer.Parse(Request("id"))
         Dim connStr As String = ConfigurationManager.ConnectionStrings("ConexionSQL").ConnectionString
         Try
